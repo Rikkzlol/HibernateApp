@@ -22,16 +22,20 @@ public class App
 
         try {
             session.beginTransaction();
+            //редактирование бд
+            //Person person = session.get(Person.class, 2);
+            //person.setName("*****");
 
-            Person person1 = new Person("Jonny",22);
-            Person person2 = new Person("Jonn1",23);
-            Person person3 = new Person("Jonn2",24);
+            // удаление из бд
+            //session.delete(person);
 
-            session.save(person1);
-            session.save(person2);
-            session.save(person3);
+            //получить айди нового обьекта
+            Person person = new Person("Some name", 22);
+            session.save(person);
 
             session.getTransaction().commit();
+
+            System.out.println(person.getId());
         } finally {
 
             sessionFactory.close();
