@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import javax.security.auth.login.AppConfigurationEntry;
+import java.util.List;
 
 /**
  * Hello world!
@@ -30,12 +31,18 @@ public class App
             //session.delete(person);
 
             //получить айди нового обьекта
-            Person person = new Person("Some name", 22);
-            session.save(person);
+//            Person person = new Person("Some name", 22);
+//            session.save(person);
+            //HQL reqest
+            //List<Person> people = session.createQuery("FROM Person WHERE name LIKE'%T'").getResultList();
+
+            //обновить имена людей где возраст определенный
+            //session.createQuery("UPDATE Person SET name='test' WHERE age<30").executeUpdate();
+            //удалить людей
+            session.createQuery("delete Person WHERE age<23").executeUpdate();
 
             session.getTransaction().commit();
 
-            System.out.println(person.getId());
         } finally {
 
             sessionFactory.close();
